@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>RGB to YUV Converter</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    input { width: 60px; margin: 5px; }
+    button { margin-top: 10px; }
+    #result { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>RGB → YUV Converter</h2>
+  <label>R: <input type="number" id="r" min="0" max="255" value="255"></label>
+  <label>G: <input type="number" id="g" min="0" max="255" value="0"></label>
+  <label>B: <input type="number" id="b" min="0" max="255" value="0"></label>
+  <br>
+  <button onclick="convertRGBtoYUV()">Convert</button>
+  <div id="result"></div>
+
+  <script>
+    function convertRGBtoYUV() {
+      const r = parseInt(document.getElementById('r').value);
+      const g = parseInt(document.getElementById('g').value);
+      const b = parseInt(document.getElementById('b').value);
+
+      const y = 0.299 * r + 0.587 * g + 0.114 * b;
+      const u = -0.14713 * r - 0.28886 * g + 0.436 * b;
+      const v = 0.615 * r - 0.51499 * g - 0.10001 * b;
+
+      document.getElementById('result').innerText =
+        `YUV = (${y.toFixed(2)}, ${u.toFixed(2)}, ${v.toFixed(2)})`;
+    }
+  </script>
+</body>
+</html>
